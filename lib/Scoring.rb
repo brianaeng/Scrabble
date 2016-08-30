@@ -71,8 +71,11 @@ class Scrabble::Scoring
           @tie_array.push(@array_of_words[i])
         end
       end
-      print @tie_array
-      return @tie_array.min_by(&:length)
-    end
-  end
-end
+      if @tie_array.max_by(&:length).length == 7
+        return @tie_array.max_by(&:length)
+      else
+        return @tie_array.min_by(&:length)
+      end
+    end # of it 
+  end # of def
+end # of class
