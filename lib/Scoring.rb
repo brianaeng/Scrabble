@@ -5,17 +5,38 @@
 require_relative '../Scrabble'
 
 class Scrabble::Scoring
+  attr_accessor :total_score, :word_array, :array_of_words, :wordscore_array
+
+  SCORE_HASH = {
+    %w(A E I O U L N R S T) => 1,
+    %w(D G) => 2,
+    %w(B C M P) => 3,
+    %w(F H V W Y) => 4,
+    %w(K) => 5,
+    %w(J X) => 8,
+    %w(Q Z) => 10
+    }
+
   def self.score(word)
     # @word_array =  takes a (string word argument).upcase.to_a
+    @@word_array = word.upcase.split("")
     # iterate through the word_array and match each array item to the SCORE_HASH.keys and taking the key's value and adding it to @total_score.
-    bonus
+    total_score = 0
+    @@word_array.each do |letter|
+      SCORE_HASH.each do |key, value|
+        if key.include? letter
+          total_score += value
+        end
+      end
     # create @wordscore_array and push into @@array_of_words
-  end
+    end
 
-  def bonus
-    # check if the word deserves a bonus (50 points)
-    # if @word_array.legnth == 7
-    # @total_score += 50
+    #add 50 points bonus for 7 letter words
+    if @@word_array.length == 7
+      total_score += 50
+    end
+
+    return total_score
   end
 
   def self.highest_score_from(array_of_words)
@@ -30,3 +51,7 @@ class Scrabble::Scoring
   end
 
 end
+
+puts Scrabble::Scoring.score("dog")
+puts Scrabble::Scoring.score("highest")
+# Scrabble::Scoring.highest_score_from(["test", "testing", "highest"])
