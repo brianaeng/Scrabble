@@ -1,0 +1,4 @@
+module Scrabble
+  class Scrabble::Scoring => output the scores for each word and output the highest scoring word
+    def self.score(word) =>
+    def self.highest_score_from_array(array_of_words) => 
