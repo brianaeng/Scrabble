@@ -13,7 +13,19 @@ describe 'testing Scoring' do
   end
 
   it 'must return word with the highest score (String) from the @@array_of_words' do
-    expect(Scrabble::Scoring.highest_score_from([["dog", 5] ["highest", 82]])).must_equal("highest")
+    expect(Scrabble::Scoring.highest_score_from(["dog","highest", "cat"])).must_equal("highest")
+  end
+
+  it 'must return shortest word from the @@tie_array' do
+    expect(Scrabble::Scoring.highest_score_from(["st","ouln", "dae"])).must_equal("dae")
+  end
+
+  it 'must return first word from the @@tie_array when both are the same length' do
+    expect(Scrabble::Scoring.highest_score_from(["so","rate", "late"])).must_equal("rate")
+  end
+
+  it 'must return 7 lettered word from the @@tie_array' do
+    expect(Scrabble::Scoring.highest_score_from(["last","qqqqqx", "aloudie"])).must_equal("aloudie")
   end
 
 end

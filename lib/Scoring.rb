@@ -17,41 +17,56 @@ class Scrabble::Scoring
     %w(Q Z) => 10
     }
 
+
   def self.score(word)
     # @word_array =  takes a (string word argument).upcase.to_a
-    @@word_array = word.upcase.split("")
+    word_array = word.upcase.split("")
     # iterate through the word_array and match each array item to the SCORE_HASH.keys and taking the key's value and adding it to @total_score.
-    total_score = 0
-    @@word_array.each do |letter|
+    @@total_score = 0
+    word_array.each do |letter|
       SCORE_HASH.each do |key, value|
         if key.include? letter
-          total_score += value
+          @@total_score += value
         end
       end
-    # create @wordscore_array and push into @@array_of_words
     end
 
     #add 50 points bonus for 7 letter words
-    if @@word_array.length == 7
-      total_score += 50
+    if word_array.length == 7
+      @@total_score += 50
     end
-
-    return total_score
+    return @@total_score
   end
 
   def self.highest_score_from(array_of_words)
-    # search for @@array_of_words[word][max_value]
-    # check if there are multiple instances of the max value. true = tie.
-      # retrieve words that have a tie between them.
-      # compare length:
-        # if length == 7 => winning word.
-        # else take length.min
-          # if there is a tie between both the score and the length - it will take the first word - which means we covered the requirement.
-    # return @@array_of_words[word]
+    @array_of_words = []
+    @array_of_scores = []
+    @tie_array = []
+    @array_of_words.each do |word|
+      self.score(word)
+      # create @wordscore_array and push into array_of_words
+      @array_of_words.push(word)
+      @array_of_scores.push(@@total_score)
+    end
+    # finding the max score in array_of_scores;
+    # finding the max score index;
+    # finding the corresponding word at the same index in the array_of_words:
+    @max_score = @array_of_scores.max
+    @index_of_max_score = @array_of_scores.index(@max_score)
+    @winning_word = @array_of_words[@index_of_max_score]
+    # # check the # of times max value appears in array_of_scores (for potential draw):
+    @num_of_winning_words = @array_of_scores.count(@max_score)
+    # single winning_word:
+    if @num_of_winning_words == 1
+      return @winning_word
+      # draw:
+    else
+      @array_of_scores.length.times do |i|
+        if @array_of_scores[i] == @max_score
+          @tie_array.push(@array_of_words[i])
+        end
+      end
+      return @tie_array.min_by(&:length)
+    end
   end
-
 end
-
-puts Scrabble::Scoring.score("dog")
-puts Scrabble::Scoring.score("highest")
-# Scrabble::Scoring.highest_score_from(["test", "testing", "highest"])
