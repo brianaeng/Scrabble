@@ -5,6 +5,7 @@
 
 require_relative 'Spec_helper'
 require_relative '../lib/Scoring'
+# require_relative '../testing'
 
 describe 'testing Scoring' do
   it 'must return correct score (Fixnum) for a given word (checking also for adding bonus)' do
