@@ -13,16 +13,18 @@ describe 'testing Scoring' do
     expect(Scrabble::Scoring.score("highest")).must_equal(64)
   end
 
-  it 'must return word with the highest score (String) from the @@array_of_words' do
-    expect(Scrabble::Scoring.highest_score_from(["dog","highest", "cat"])).must_equal("highest")
+  it 'must return word with the highest score (String) from the @@array_of_words & check for case sensetivity' do
+    expect(Scrabble::Scoring.highest_score_from(["Dog","Highest", "Cat"])).must_equal("highest")
   end
 
   it 'must return shortest word from the @@tie_array' do
     expect(Scrabble::Scoring.highest_score_from(["st","ouln", "dae"])).must_equal("dae")
+    expect(Scrabble::Scoring.highest_score_from(["don","f", "ae"])).must_equal("f")
   end
 
   it 'must return first word from the @@tie_array when both are the same length' do
     expect(Scrabble::Scoring.highest_score_from(["so","rate", "late"])).must_equal("rate")
+    expect(Scrabble::Scoring.highest_score_from(["y","w", "d"])).must_equal("y")
   end
 
   it 'must return 7 lettered word from the @@tie_array' do

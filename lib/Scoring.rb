@@ -13,19 +13,19 @@ class Scrabble::Scoring
   attr_accessor :total_score, :word_array, :array_of_words, :wordscore_array
 
   SCORE_HASH = {
-    %w(A E I O U L N R S T) => 1,
-    %w(D G) => 2,
-    %w(B C M P) => 3,
-    %w(F H V W Y) => 4,
-    %w(K) => 5,
-    %w(J X) => 8,
-    %w(Q Z) => 10
+    %w(a e i o u l n r s t) => 1,
+    %w(d g ) => 2,
+    %w(b c m p) => 3,
+    %w(f h v w y) => 4,
+    %w(k) => 5,
+    %w(j x) => 8,
+    %w(q z) => 10
     }
 
 
   def self.score(word)
     # @@word_array =  takes a (string word argument).upcase.to_a
-    @@word_array = word.upcase.split("")
+    @@word_array = word.downcase.split("")
     # iterate through the word_array and match each array item to the SCORE_HASH.keys and taking the key's value and adding it to @total_score.
     @@total_score = 0
     @@word_array.each do |letter|
@@ -44,8 +44,8 @@ class Scrabble::Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    @array_of_words = array_of_words
     @array_of_scores = []
+    @array_of_words = array_of_words.map(&:downcase)
 
     @array_of_words.each do |word|
       self.score(word)
@@ -76,6 +76,6 @@ class Scrabble::Scoring
       else
         return @tie_array.min_by(&:length)
       end
-    end # of it 
+    end # of it
   end # of def
 end # of class
