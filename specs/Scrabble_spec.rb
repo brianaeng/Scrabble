@@ -37,3 +37,19 @@ end
 
 #Wave 2
 describe 'testing Player class' do
+  it 'must return the name argument when called through the attr_reader' do
+    expect(Scrabble::Player.name("nameish")).must_equal("nameish")
+  end
+  it 'must return error when less than one argument is passed for name' do
+    expect(Scrabble::Player.name()).must_equal(ArgumentError)
+  end
+  it 'must return error when more than one argument is passed for name' do
+    expect(Scrabble::Player.name("test", "test1")).must_equal(ArgumentError)
+  end
+  it 'must return error for an empty string passed for name' do
+    expect(Scrabble::Player.name("")).must_equal(ArgumentError)
+  end
+  it 'must return error when name is not a string' do
+    expect(Scrabble::Player.name(5)).must_equal(ArgumentError)
+  end
+end
