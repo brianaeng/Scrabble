@@ -58,8 +58,10 @@ class Scrabble::Scoring
       end
       print @@tie_array
       if @@tie_array.max_by(&:length).length == 7
+        print @@tie_array
         return @@tie_array.max_by(&:length)
       else
+        print @@tie_array
         return @@tie_array.min_by(&:length)
       end
     end # of it
@@ -77,6 +79,12 @@ class Scrabble::Scoring
 
   def self.return_array_of_scores
     return @@array_of_scores
+  end
+
+  def self.reset
+    @@array_of_scores = []
+    @@array_of_words = []
+    @@tie_array = []
   end
 
 end # of class
