@@ -15,7 +15,7 @@
 require_relative '../Scrabble'
 require_relative 'Scoring'
 
-class Scrabble::Player < Scrabble::Scoring
+class Scrabble::Player
   #extend Scrabble::Scoring#.highest_score_from
   # #name: returns the value of the @name instance variable
   attr_reader :name, :plays_array, :total_score_instance
@@ -30,9 +30,9 @@ class Scrabble::Player < Scrabble::Scoring
   def play(word)
     # Returns false if player has already won
     @plays_array.push(word)
-    if won?
-      return false
-    end
+    # if won?
+    #   return false
+    # end
     Scrabble::Scoring.score(word)
   end
 
@@ -44,7 +44,7 @@ class Scrabble::Player < Scrabble::Scoring
   # #total_score: Returns the sum of scores of played words
   def total_score
     Scrabble::Scoring.make_array_of_scores(@plays_array)
-    @total_score_instance = return_array_of_scores.inject(0, :+)
+    @total_score_instance = Scrabble::Scoring.return_array_of_scores.inject(0, :+)
   end
 
   # #won?: If the player has over 100 points, returns true, otherwise returns false
