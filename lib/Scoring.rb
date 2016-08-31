@@ -56,6 +56,7 @@ class Scrabble::Scoring
           @@tie_array.push(@@array_of_words[i])
         end
       end
+      print @@tie_array
       if @@tie_array.max_by(&:length).length == 7
         return @@tie_array.max_by(&:length)
       else
