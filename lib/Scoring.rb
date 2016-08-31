@@ -12,8 +12,6 @@ require_relative '../Scrabble'
 class Scrabble::Scoring
   attr_accessor :total_score, :word_array, :array_of_words, :wordscore_array
 
-  @@array_of_scores = []
-
   def self.score(word)
     # @@word_array =  takes a (string word argument).upcase.to_a
     @word_array = word.downcase.split("")
@@ -35,6 +33,7 @@ class Scrabble::Scoring
   end
 
   def self.highest_score_from(array_of_words)
+    @@array_of_scores = []
     self.make_array_of_scores(array_of_words)
 
     # finding the max score in array_of_scores;
@@ -72,6 +71,9 @@ class Scrabble::Scoring
     # create @wordscore_array and push into array_of_words
     @@array_of_scores.push(@total_score)
     end
+  end
+
+  def return_array_of_scores
     return @@array_of_scores
   end
 

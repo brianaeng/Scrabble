@@ -54,7 +54,8 @@ describe 'testing Player class' do
   #   expect(Scrabble::Player.name(5)).must_equal(ArgumentError)
   # end
   it 'must return the score of the players\' word' do
-    expect((Scrabble::Player.new("nameish")).play("d")).must_equal(2)
+    player0 = Scrabble::Player.new("nemo")
+    expect(player0.play("d")).must_equal(2)
   end
   it 'must return the plays_array when plays method is called' do
     player1 = Scrabble::Player.new("nameish")
