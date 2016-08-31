@@ -5,9 +5,11 @@
 
 require_relative 'Spec_helper'
 require_relative '../lib/Scoring'
+require_relative '../lib/Player'
 # require_relative '../testing'
 
-describe 'testing Scoring' do
+#Wave 1
+describe 'testing Scoring class' do
   it 'must return correct score (Fixnum) for a given word (checking also for adding bonus)' do
     expect(Scrabble::Scoring.score("dog")).must_equal(5)
     expect(Scrabble::Scoring.score("highest")).must_equal(64)
@@ -32,3 +34,6 @@ describe 'testing Scoring' do
   end
 
 end
+
+#Wave 2
+describe 'testing Player class' do

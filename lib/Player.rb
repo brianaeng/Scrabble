@@ -15,5 +15,43 @@
 require_relative '../Scrabble'
 
 class Scrabble::Player
+  extend Scrabble::Scoring.highest_score_from
+  # #name: returns the value of the @name instance variable
+  attr_reader :name
 
+  def initialize(name)
+    @name = name
+  end
+
+  # #play(word): Adds the input word to the plays Array
+  def play(word)
+    #adds word to plays_array
+    # Returns false if player has already won
+    # Returns the score of the word (calling self.score method)
+  end
+
+  # #plays: returns an Array of the words played by the player
+  def plays
+    #returns plays_array
+  end
+
+  # #total_score: Returns the sum of scores of played words
+  def total_score
+    #total_score = play_array.sum
+  end
+
+  # #won?: If the player has over 100 points, returns true, otherwise returns false
+  def won?
+    #check to see total_score > 100 - if it is, return true, else return false
+  end
+
+  # #highest_scoring_word: Returns the highest scoring played word
+  def highest_scoring_word
+    #call the Scrabble::Scoring.highest_score_from(plays_array) and return the winning_word
+  end
+
+  # #highest_word_score: Returns the highest_scoring_word score
+  def highest_word_score
+    #call the Scrabble::Scoring.highest_score_from(plays_array) and return max_score
+  end
 end

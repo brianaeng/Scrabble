@@ -51,7 +51,7 @@ class Scrabble::Scoring
     num_of_winning_words = @array_of_scores.count(max_score)
     # single winning_word:
     if num_of_winning_words == 1
-      return winning_word
+      winning_word
       # draw:
     else
       @tie_array = []
