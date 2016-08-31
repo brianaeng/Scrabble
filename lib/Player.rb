@@ -22,9 +22,9 @@ class Scrabble::Player < Scrabble::Scoring
 
   def initialize(name)
     @name = name
-    if @name == "" || @name == Fixnum
-      raise ArgumentError.new("Invalid name") #{|name| (name == "") || (name == Fixnum)}
-    end
+    # if @name == "" #|| @name == Fixnum
+    #   raise ArgumentError.new("Invalid name") #{|name| (name == "") || (name == Fixnum)}
+    # end
   end
 
   # #play(word): Adds the input word to the plays Array
@@ -60,5 +60,4 @@ class Scrabble::Player < Scrabble::Scoring
   end
 end
 
-Scrabble::Player.new("")
-# print Scrabble::Player.new(5)
+print Scrabble::Player.new("test")
