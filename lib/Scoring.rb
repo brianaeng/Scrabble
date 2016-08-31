@@ -67,9 +67,9 @@ class Scrabble::Scoring
     @array_of_words = array_of_words.map(&:downcase)
 
     @array_of_words.each do |word|
-    self.score(word)
+    score_per_word = Scrabble::Scoring.score(word)
     # create @wordscore_array and push into array_of_words
-    @@array_of_scores.push(@total_score)
+    @@array_of_scores.push(score_per_word)
     end
   end
 
