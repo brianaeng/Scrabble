@@ -28,7 +28,6 @@ class Scrabble::Scoring
         end
       end
     end
-
     #add 50 points bonus for 7 letter words
     if word_array.length == 7
       total_score += 50
@@ -80,7 +79,7 @@ class Scrabble::Scoring
   end
 
 end # of class
-
-Scrabble::Scoring.highest_score_from(["test", "q", "q"])
+#
+# Scrabble::Scoring.highest_score_from(["test", "q", "q"])
 # print Scrabble::Scoring.highest_score_from(["testing", "test", "qqqqqqq"])
 # print Scrabble::Scoring.score("quick")

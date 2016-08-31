@@ -12,6 +12,9 @@ require_relative '../lib/Player'
 describe 'testing Scoring class' do
   it 'must return correct score (Fixnum) for a given word (checking also for adding bonus)' do
     expect(Scrabble::Scoring.score("dog")).must_equal(5)
+  end
+
+  it 'must return correct score (Fixnum) for a given word (checking also for adding bonus)' do
     expect(Scrabble::Scoring.score("highest")).must_equal(64)
   end
 
@@ -20,14 +23,21 @@ describe 'testing Scoring class' do
   end
 
   it 'must return shortest word from the @@tie_array' do
-    expect(Scrabble::Scoring.highest_score_from(["st","ouln", "dae"])).must_equal("dae")
     expect(Scrabble::Scoring.highest_score_from(["don","f", "ae"])).must_equal("f")
+  end
+
+  it 'must return shortest word from the @@tie_array' do
+    expect(Scrabble::Scoring.highest_score_from(["st","ouln", "dae"])).must_equal("dae")
+  end
+
+  it 'must return first word from the @@tie_array when both are the same length' do
+    expect(Scrabble::Scoring.highest_score_from(["y","w", "d"])).must_equal("y")
   end
 
   it 'must return first word from the @@tie_array when both are the same length' do
     expect(Scrabble::Scoring.highest_score_from(["so","rate", "late"])).must_equal("rate")
-    expect(Scrabble::Scoring.highest_score_from(["y","w", "d"])).must_equal("y")
   end
+
 
   it 'must return 7 lettered word from the @@tie_array' do
     expect(Scrabble::Scoring.highest_score_from(["last","qqqqqx", "aloudie"])).must_equal("aloudie")
