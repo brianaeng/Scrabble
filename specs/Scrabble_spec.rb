@@ -36,6 +36,7 @@ describe 'testing Scoring class' do
 end
 
 #Wave 2
+
 describe 'testing Player class' do
   it 'must return the name argument when called through the attr_reader' do
     expect(Scrabble::Player.new("nameish").name).must_equal("nameish")
@@ -52,4 +53,13 @@ describe 'testing Player class' do
   # it 'must return error when name is not a string' do
   #   expect(Scrabble::Player.name(5)).must_equal(ArgumentError)
   # end
+  it 'must return the score of the players\' word' do
+    expect((Scrabble::Player.new("nameish")).play("d")).must_equal(2)
+  end
+  it 'must return the plays_array when plays method is called' do
+    player1 = Scrabble::Player.new("nameish")
+    player1.play("d") # = Fixnum
+    player1.play("youbetterwork")
+    expect(player1.plays).must_equal(["d", "youbetterwork"])
+  end
 end

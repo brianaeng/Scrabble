@@ -12,6 +12,8 @@ require_relative '../Scrabble'
 class Scrabble::Scoring
   attr_accessor :total_score, :word_array, :array_of_words, :wordscore_array
 
+  @@array_of_scores = []
+
   def self.score(word)
     # @@word_array =  takes a (string word argument).upcase.to_a
     @word_array = word.downcase.split("")
@@ -33,27 +35,24 @@ class Scrabble::Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    @array_of_scores = []
-    @array_of_words = array_of_words.map(&:downcase)
-
-    self.make_array_of_scores
+    self.make_array_of_scores(array_of_words)
 
     # finding the max score in array_of_scores;
     # finding the max score index;
     # finding the corresponding word at the same index in the array_of_words:
-    max_score = @array_of_scores.max
-    index_of_max_score = @array_of_scores.index(max_score)
+    max_score = @@array_of_scores.max
+    index_of_max_score = @@array_of_scores.index(max_score)
     winning_word = @array_of_words[index_of_max_score]
     # # check the # of times max value appears in array_of_scores (for potential draw):
-    num_of_winning_words = @array_of_scores.count(max_score)
+    num_of_winning_words = @@array_of_scores.count(max_score)
     # single winning_word:
     if num_of_winning_words == 1
       winning_word
       # draw:
     else
       @tie_array = []
-      @array_of_scores.length.times do |i|
-        if @array_of_scores[i] == max_score
+      @@array_of_scores.length.times do |i|
+        if @@array_of_scores[i] == max_score
           @tie_array.push(@array_of_words[i])
         end
       end
@@ -66,11 +65,14 @@ class Scrabble::Scoring
   end # of def
 
   def self.make_array_of_scores(array_of_words)
+    @array_of_words = array_of_words.map(&:downcase)
+
     @array_of_words.each do |word|
     self.score(word)
     # create @wordscore_array and push into array_of_words
-    @array_of_scores.push(@total_score)
+    @@array_of_scores.push(@total_score)
     end
+    return @@array_of_scores
   end
 
 end # of class
