@@ -22,26 +22,26 @@ class Scrabble::Player < Scrabble::Scoring
 
   def initialize(name)
     @name = name
-    # if @name == "" #|| @name == Fixnum
-    #   raise ArgumentError.new("Invalid name") #{|name| (name == "") || (name == Fixnum)}
-    # end
+    # later maybe add error handeling for "" or Fixnum arguments
+    @plays_array = []
   end
 
   # #play(word): Adds the input word to the plays Array
   def play(word)
-    #adds word to plays_array
+    @plays_array << word
     # Returns false if player has already won
-    # Returns the score of the word (calling self.score method)
+    won?
+    self.score(word)
   end
 
   # #plays: returns an Array of the words played by the player
   def plays
-    #returns plays_array
+    return @plays_array
   end
 
   # #total_score: Returns the sum of scores of played words
   def total_score
-    #total_score_instance = play_array.sum
+    @total_score_instance = self.make_array_of_scores(@plays_array).sum    
   end
 
   # #won?: If the player has over 100 points, returns true, otherwise returns false
@@ -59,5 +59,3 @@ class Scrabble::Player < Scrabble::Scoring
     #call the Scrabble::Scoring.highest_score_from(plays_array) and return max_score
   end
 end
-
-print Scrabble::Player.new("test")
