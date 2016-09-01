@@ -81,6 +81,10 @@ class Scrabble::Scoring
     return @@array_of_scores
   end
 
+  def self.return_max_score
+    return @@array_of_scores.max
+  end
+
   def self.reset
     @@array_of_scores = []
     @@array_of_words = []

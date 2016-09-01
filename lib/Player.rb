@@ -48,28 +48,30 @@ class Scrabble::Player
   end
 
   # #won?: If the player has over 100 points, returns true, otherwise returns false
-  def won?
-    total_score
-    #check to see total_score_instance > 100 - if it is, return true, else return false
-    if @total_score_instance > 100
-      return true
-    else
-      return false
-    end
-  end
+  # def won?
+  #   total_score
+  #   #check to see total_score_instance > 100 - if it is, return true, else return false
+  #   if @total_score_instance > 100
+  #     return true
+  #   else
+  #     return false
+  #   end
+  # end
 
   # #highest_scoring_word: Returns the highest scoring played word
   def highest_scoring_word
-    #call the Scrabble::Scoring.highest_score_from(plays_array) and return the winning_word
+     Scrabble::Scoring.highest_score_from(@plays_array)
   end
 
-  # #highest_word_score: Returns the highest_scoring_word score
+  # highest_word_score: Returns the highest_scoring_word score
   def highest_word_score
-    #call the Scrabble::Scoring.highest_score_from(plays_array) and return max_score
+    Scrabble::Scoring.return_max_score
   end
 end
-
+#
 # player0 = Scrabble::Player.new("nemo")
 # player0.play("e")
+# player0.play("q")
 # print player0.plays_array
-# print player0.total_score_instance
+# print player0.highest_scoring_word
+# print player0.highest_word_score
