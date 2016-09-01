@@ -2,7 +2,7 @@ require_relative '../Scrabble'
 require_relative 'Scoring'
 require_relative 'Player'
 
-class TileBag
+class Scrabble::TileBag
   attr_reader :tiles
   def initialize
     @tiles = []
@@ -25,8 +25,8 @@ class TileBag
   end
 
 end
-
-
-bag1 = TileBag.new
-print bag1.draw_tiles(3)
-print bag1.tiles
+#
+#
+# bag1 = TileBag.new
+# print bag1.draw_tiles(3)
+# print bag1.tiles

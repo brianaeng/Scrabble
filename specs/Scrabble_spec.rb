@@ -102,7 +102,7 @@ describe 'testing Player class' do
     expect(player1.highest_scoring_word).must_equal("youbett")
   end
 
-  it 'must return the total score when total_score method is called' do
+  it 'must return the highest word score when highest_word_score method is called' do
     player1 = Scrabble::Player.new("nameish")
     player1.play("d") # = Fixnum
     player1.play("youbett")
@@ -115,4 +115,37 @@ describe 'testing Player class' do
     player1.play("youbett")
     expect(player1.play("youbett")).must_equal(false)
   end
+end
+
+# wave 3
+
+describe 'testing TileBag class' do
+  it 'must return correct number of randomized tiles for a given number of tiles' do
+    draw1 = Scrabble::TileBag.new
+    expect((draw1.draw_tiles(4)).length).must_equal(4)
+  end
+
+  it 'must return correct number of randomized tiles for a given number of tiles' do
+    draw1 = Scrabble::TileBag.new
+    expect((draw1.draw_tiles(0)).length).must_equal(0)
+  end
+
+  it 'must return correct array of tiles left after drawing random tiles' do
+    draw1 = Scrabble::TileBag.new
+    draw1.draw_tiles(4)
+    expect(draw1.tiles_remaining).must_equal(draw1.tiles)
+  end
+
+  it 'must return correct array of tiles left after drawing random tiles' do
+    draw1 = Scrabble::TileBag.new
+    draw1.draw_tiles(4)
+    draw1.draw_tiles(3)
+    expect(draw1.tiles_remaining).must_equal(draw1.tiles)
+  end
+
+  it 'must return correct array of tiles left after drawing random tiles' do
+    draw1 = Scrabble::TileBag.new
+    expect(draw1.class).must_equal(Scrabble::TileBag)
+  end
+
 end
