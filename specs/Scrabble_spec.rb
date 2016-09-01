@@ -6,6 +6,8 @@
 require_relative 'Spec_helper'
 require_relative '../lib/Scoring'
 require_relative '../lib/Player'
+require_relative '../lib/TileBag'
+
 # require_relative '../testing'
 
 #Wave 1
