@@ -148,4 +148,16 @@ describe 'testing TileBag class' do
     expect(draw1.class).must_equal(Scrabble::TileBag)
   end
 
+  # it 'must return' do
+  #   draw1 = Scrabble::TileBag.new
+  #   player1 = Scrabble::Player.new
+  #   expect(player1.tiles.class).must_equal(Array)
+  # end
+  # #
+  # def tiles
+  #   random_number = rand(1..7)
+  #   Scrabble::TileBag.draw_tiles(random_number)
+  # end
+  #
+
 end
