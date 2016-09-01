@@ -29,14 +29,13 @@ class Scrabble::Player
   # #play(word): Adds the input word to the plays Array
   def play(word)
     # Returns false if player has already won
+    Scrabble::Scoring.reset
     if won?
       return false
     else
       @plays_array.push(word)
       Scrabble::Scoring.score(word)
     end
-
-    Scrabble::Scoring.reset
   end
 
   # #plays: returns an Array of the words played by the player
@@ -72,6 +71,8 @@ class Scrabble::Player
   end
 end
 
+player0 = Scrabble::Player.new("nemo")
+print player0.play("d")
 # player0 = Scrabble::Player.new("nemo")
 # player0.play("eat") #Score of this is 3
 # puts
