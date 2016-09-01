@@ -67,7 +67,7 @@ class Scrabble::Player
 
   # highest_word_score: Returns the highest_scoring_word score
   def highest_word_score
-    Scrabble::Scoring.return_max_score
+    Scrabble::Scoring.score(Scrabble::Scoring.highest_score_from(@plays_array))
   end
 end
 

@@ -76,7 +76,22 @@ describe 'testing Player class' do
   it 'must return the plays_array when plays method is called' do
     player1 = Scrabble::Player.new("nameish")
     player1.play("d") # = Fixnum
-    player1.play("youbetterwork")
-    expect(player1.plays).must_equal(["d", "youbetterwork"])
+    player1.play("youbett")
+    expect(player1.plays).must_equal(["d", "youbett"])
   end
+
+  it 'must return the highest word score when highest_word_score method is called' do
+    player1 = Scrabble::Player.new("nameish")
+    player1.play("d") # = Fixnum
+    player1.play("youbett")
+    expect(player1.highest_word_score).must_equal(62)
+  end
+
+  it 'must return the highest scoring word when highest_scoring_word method is called' do
+    player1 = Scrabble::Player.new("nameish")
+    player1.play("d") # = Fixnum
+    player1.play("youbett")
+    expect(player1.highest_scoring_word).must_equal("youbett")
+  end
+
 end
