@@ -65,6 +65,7 @@ class Scrabble::Scoring
   end # of def
 
   def self.make_array_of_scores(array_of_words)
+    Scrabble::Scoring.reset
     @@array_of_words = array_of_words.map(&:downcase)
 
     @@array_of_words.each do |word|
