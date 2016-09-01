@@ -40,7 +40,6 @@ class Scrabble::Scoring
     # finding the max score in array_of_scores;
     # finding the max score index;
     # finding the corresponding word at the same index in the array_of_words:
-    print @@array_of_words
     max_score = @@array_of_scores.max
     index_of_max_score = @@array_of_scores.index(max_score)
     winning_word = @@array_of_words[index_of_max_score]
@@ -51,7 +50,6 @@ class Scrabble::Scoring
       winning_word
       # draw:
     else
-      print @@array_of_scores
       @@array_of_scores.length.times do |i|
         if @@array_of_scores[i] == max_score
           @@tie_array.push(@@array_of_words[i])
