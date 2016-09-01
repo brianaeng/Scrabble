@@ -50,7 +50,7 @@ class Scrabble::Player
 
   # #won?: If the player has over 100 points, returns true, otherwise returns false
   def won?
-    total_score
+    # total_score
     #check to see total_score_instance > 100 - if it is, return true, else return false
     if @total_score_instance > 100
       return true

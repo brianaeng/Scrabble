@@ -45,6 +45,7 @@ class Scrabble::Scoring
     winning_word = @@array_of_words[index_of_max_score]
     # # check the # of times max value appears in array_of_scores (for potential draw):
     num_of_winning_words = @@array_of_scores.count(max_score)
+
     # single winning_word:
     if num_of_winning_words == 1
       winning_word
