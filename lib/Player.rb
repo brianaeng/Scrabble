@@ -71,8 +71,8 @@ class Scrabble::Player
   end
 end
 
-player0 = Scrabble::Player.new("nemo")
-print player0.play("d")
+# player0 = Scrabble::Player.new("nemo")
+# print player0.play("d")
 # player0 = Scrabble::Player.new("nemo")
 # player0.play("eat") #Score of this is 3
 # puts

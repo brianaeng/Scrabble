@@ -58,6 +58,7 @@ end
 describe 'testing Player class' do
   it 'must return the name argument when called through the attr_reader' do
     expect(Scrabble::Player.new("nameish").name).must_equal("nameish")
+    expect(Scrabble::Player.new("test").name).must_equal("test")
   end
 
   it 'must return error when less than one argument is passed for name' do
@@ -71,6 +72,11 @@ describe 'testing Player class' do
   it 'must return the score of the players\' word' do
     player0 = Scrabble::Player.new("nemo")
     expect(player0.play("d")).must_equal(2)
+  end
+
+  it 'must return the score of the players\' word' do
+    player0 = Scrabble::Player.new("test3")
+    expect(player0.play("q")).must_equal(10)
   end
 
   it 'must return the plays_array when plays method is called' do
@@ -94,4 +100,17 @@ describe 'testing Player class' do
     expect(player1.highest_scoring_word).must_equal("youbett")
   end
 
+  it 'must return the highest word score when highest_word_score method is called' do
+    player1 = Scrabble::Player.new("nameish")
+    player1.play("d") # = Fixnum
+    player1.play("youbett")
+    expect(player1.total_score).must_equal(64)
+  end
+
+  it 'must return the highest word score when highest_word_score method is called' do
+    player1 = Scrabble::Player.new("nameish")
+    player1.play("youbett")
+    player1.play("youbett")
+    expect(player1.play("youbett")).must_equal(false)
+  end
 end
