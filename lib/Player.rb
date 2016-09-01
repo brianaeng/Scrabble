@@ -29,11 +29,12 @@ class Scrabble::Player
   # #play(word): Adds the input word to the plays Array
   def play(word)
     # Returns false if player has already won
-    @plays_array.push(word)
-    # if won?
-    #   return false
-    # end
-    Scrabble::Scoring.score(word)
+    if won?
+      return false
+    else
+      @plays_array.push(word)
+      Scrabble::Scoring.score(word)
+    end
   end
 
   # #plays: returns an Array of the words played by the player
@@ -48,15 +49,15 @@ class Scrabble::Player
   end
 
   # #won?: If the player has over 100 points, returns true, otherwise returns false
-  # def won?
-  #   total_score
-  #   #check to see total_score_instance > 100 - if it is, return true, else return false
-  #   if @total_score_instance > 100
-  #     return true
-  #   else
-  #     return false
-  #   end
-  # end
+  def won?
+    total_score
+    #check to see total_score_instance > 100 - if it is, return true, else return false
+    if @total_score_instance > 100
+      return true
+    else
+      return false
+    end
+  end
 
   # #highest_scoring_word: Returns the highest scoring played word
   def highest_scoring_word
@@ -68,10 +69,26 @@ class Scrabble::Player
     Scrabble::Scoring.return_max_score
   end
 end
-#
-# player0 = Scrabble::Player.new("nemo")
-# player0.play("e")
-# player0.play("q")
+
+player0 = Scrabble::Player.new("nemo")
+player0.play("eat")
+puts
+print player0.total_score
+puts
+player0.play("quick")
+puts
+print player0.total_score
+puts
+player0.play("test")
+puts
+print player0.total_score
+player0.play("more")
+puts
+print player0.total_score
+player0.play("more")
+puts
+print player0.total_score
+
 # print player0.plays_array
 # print player0.highest_scoring_word
 # print player0.highest_word_score
