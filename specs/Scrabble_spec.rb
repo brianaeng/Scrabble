@@ -102,7 +102,7 @@ describe 'testing Player class' do
     expect(player1.highest_scoring_word).must_equal("youbett")
   end
 
-  it 'must return the highest word score when highest_word_score method is called' do
+  it 'must return the total score when total_score method is called' do
     player1 = Scrabble::Player.new("nameish")
     player1.play("d") # = Fixnum
     player1.play("youbett")
