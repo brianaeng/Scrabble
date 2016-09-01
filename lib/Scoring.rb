@@ -36,7 +36,7 @@ class Scrabble::Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    self.make_array_of_scores(array_of_words)
+    Scrabble::Scoring.make_array_of_scores(array_of_words)
     # finding the max score in array_of_scores;
     # finding the max score index;
     # finding the corresponding word at the same index in the array_of_words:
