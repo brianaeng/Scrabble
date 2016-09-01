@@ -72,16 +72,16 @@ class Scrabble::Player
   end
 end
 
-player0 = Scrabble::Player.new("nemo")
-player0.play("eat") #Score of this is 3
-puts
-player0.play("quick") #Score of this is 20
-puts
-player0.play("test") #Score of this is 4
-puts
-puts player0.total_score
-puts player0.highest_scoring_word
-puts player0.highest_word_score
+# player0 = Scrabble::Player.new("nemo")
+# player0.play("eat") #Score of this is 3
+# puts
+# player0.play("quick") #Score of this is 20
+# puts
+# player0.play("test") #Score of this is 4
+# puts
+# puts player0.total_score
+# puts player0.highest_scoring_word
+# puts player0.highest_word_score
 
 # print player0.plays_array
 # print player0.highest_scoring_word
