@@ -19,6 +19,11 @@ class TileBag
     # # @tiles -= random_tiles
     return random_tiles
   end
+
+  def tiles_remaining
+    return @tiles
+  end
+
 end
 
 
