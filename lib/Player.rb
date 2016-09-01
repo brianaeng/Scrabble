@@ -75,17 +75,17 @@ player0.play("eat")
 puts
 print player0.total_score
 puts
-player0.play("quick")
+print player0.play("quick")
 puts
 print player0.total_score
 puts
-player0.play("test")
+print player0.play("test")
 puts
 print player0.total_score
-player0.play("more")
+print player0.play("more")
 puts
 print player0.total_score
-player0.play("more")
+print player0.play("more")
 puts
 print player0.total_score
 
