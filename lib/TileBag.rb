@@ -1,6 +1,6 @@
-require_relative '../Scrabble'
-require_relative 'Scoring'
-require_relative 'Player'
+# require_relative '../Scrabble'
+# require_relative 'Scoring'
+# require_relative 'Player'
 
 class Scrabble::TileBag
   attr_reader :tiles

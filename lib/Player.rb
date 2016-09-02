@@ -3,17 +3,16 @@
 
 require_relative '../Scrabble'
 require_relative 'Scoring'
+require_relative 'TileBag'
 
 class Scrabble::Player
   #extend Scrabble::Scoring#.highest_score_from
   # #name: returns the value of the @name instance variable
-  attr_reader :name, :plays_array, :total_score_instance
+  attr_reader :name, :plays_array, :total_score_instance, :players_tilebag, :tiles_array
 
   def initialize(name)
     @name = name
-    # later maybe add error handeling for "" or Fixnum arguments
     @plays_array = []
-    @players_tilebag = Scrabble::TileBag.new #creating a TileBag instance for the created player
     @tiles_array = []
   end
 
@@ -62,21 +61,30 @@ class Scrabble::Player
   end
 
   def tiles
-    random_number = rand(1..7)
-    drawn_tiles = @players_tilebag.draw_tiles(random_number) #draw_tiles isn't a class method so we don't call it on Scrabble::TileBag...I'm guessing we call it on an instance of it? Created one in the initialize (above)
-    @tiles_array.push(drawn_tiles)
+    return @tiles_array
   end
 
   def draw_tiles(tile_bag)
+    counter = 7
+
     until @tiles_array.length == 7
-      tiles
+      random_number = rand(1..counter)
+      drawn_tiles = tile_bag.draw_tiles(random_number)
+      @tiles_array += drawn_tiles
+      counter -= random_number
     end
   end
 
 end
 
-# player0 = Scrabble::Player.new("nemo")
-# print player0.play("d")
+#tiles a collection of letters that the player can play (max 7)
+#draw_tiles(tile_bag) fills tiles array until it has 7 letters from the given tile bag
+
+player0 = Scrabble::Player.new("nemo")
+players_tilebag = Scrabble::TileBag.new
+print player0.draw_tiles(players_tilebag)
+puts
+print player0.tiles
 # player0 = Scrabble::Player.new("nemo")
 # player0.play("eat") #Score of this is 3
 # puts
