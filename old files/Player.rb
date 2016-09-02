@@ -2,7 +2,7 @@
 
 
 require_relative '../Scrabble'
-require_relative 'test'
+require_relative 'Scoring'
 require_relative 'TileBag'
 
 class Scrabble::Player
@@ -12,7 +12,6 @@ class Scrabble::Player
 
   def initialize(name)
     @name = name
-    @scores = []
     @plays_array = []
     @tiles_array = []
   end
@@ -20,13 +19,12 @@ class Scrabble::Player
   # #play(word): Adds the input word to the plays Array
   def play(word)
     # Returns false if player has already won
+    Scrabble::Scoring.reset
     if won?
       return false
     else
       @plays_array.push(word)
-      score = Scrabble::Scoring.score(word)
-      @scores.push(score)
-      return score
+      Scrabble::Scoring.score(word)
     end
   end
 
@@ -37,7 +35,8 @@ class Scrabble::Player
 
   # #total_score: Returns the sum of scores of played words
   def total_score
-    @total_score_instance = @scores.inject(0, :+)
+    Scrabble::Scoring.make_array_of_scores(@plays_array)
+    @total_score_instance = Scrabble::Scoring.return_array_of_scores.inject(0, :+)
   end
 
   # #won?: If the player has over 100 points, returns true, otherwise returns false
@@ -81,21 +80,21 @@ end
 #tiles a collection of letters that the player can play (max 7)
 #draw_tiles(tile_bag) fills tiles array until it has 7 letters from the given tile bag
 
-# player0 = Scrabble::Player.new("nemo")
-# players_tilebag = Scrabble::TileBag.new
-# print player0.draw_tiles(players_tilebag)
-# puts
-# print player0.tiles
 player0 = Scrabble::Player.new("nemo")
-player0.play("eat") #Score of this is 3
+players_tilebag = Scrabble::TileBag.new
+print player0.draw_tiles(players_tilebag)
 puts
-player0.play("quick") #Score of this is 20
-puts
-player0.play("test") #Score of this is 4
-puts
-puts player0.total_score
-puts player0.highest_scoring_word
-puts player0.highest_word_score
+print player0.tiles
+# player0 = Scrabble::Player.new("nemo")
+# player0.play("eat") #Score of this is 3
+# puts
+# player0.play("quick") #Score of this is 20
+# puts
+# player0.play("test") #Score of this is 4
+# puts
+# puts player0.total_score
+# puts player0.highest_scoring_word
+# puts player0.highest_word_score
 
 # print player0.plays_array
 # print player0.highest_scoring_word
