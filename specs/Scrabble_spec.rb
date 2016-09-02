@@ -8,7 +8,7 @@ require_relative '../lib/Scoring'
 require_relative '../lib/Player'
 require_relative '../lib/TileBag'
 
-#Wave 1
+#Wave 1 - Scoring
 describe 'testing Scoring class' do
   it 'must return correct score (Fixnum) for a given word (checking also for adding bonus)' do
     expect(Scrabble::Scoring.score("dog")).must_equal(5)
@@ -44,7 +44,7 @@ describe 'testing Scoring class' do
 
 end
 
-#Wave 2
+#Wave 2 - Player
 
 describe 'testing Player class' do
   it 'must return the name argument when called through the attr_reader' do
@@ -121,7 +121,7 @@ describe 'testing Player class' do
 
 end
 
-# Wave 3
+# Wave 3 - TileBag
 
 describe 'testing TileBag class' do
   it 'must return correct number of randomized tiles for a given number of tiles' do
@@ -147,7 +147,7 @@ describe 'testing TileBag class' do
     expect(draw1.tiles_remaining).must_equal(draw1.tiles)
   end
 
-  it 'must return correct array of tiles left after drawing random tiles' do
+  it 'must return correct class after creating a TileBag instance' do
     draw1 = Scrabble::TileBag.new
     expect(draw1.class).must_equal(Scrabble::TileBag)
   end

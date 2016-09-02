@@ -1,21 +1,13 @@
-# Scoring.rb - Scoring class file - Briana/lib/.
-
-# Create a Scrabble::Scoring class which contains some sort of data structure to store the individual letter scores listed below - would that be under initializing of that class?
-
 require_relative '../Scrabble'
-# Scrabble.rb - Scoring class file - Briana/lib/.
-
-# Create a Scrabble::Scoring class which contains some sort of data structure to store the individual letter scores listed below - would that be under initializing of that class?
-
-#  for testing: require_relative 'Scrabble'
 
 class Scrabble::Scoring
   attr_accessor :total_score, :word_array, :array_of_words, :wordscore_array
 
+  #Scores a word and adds a bonus if the word is longer than 7 letters
   def self.score(word)
-    # @@word_array =  takes a (string word argument).upcase.to_a
     word_array = word.downcase.split("")
-    # iterate through the word_array and match each array item to the SCORE_HASH.keys and taking the key's value and adding it to @total_score.
+
+    #Total score keeps the word's score
     total_score = 0
     word_array.each do |letter|
       Scrabble::SCORE_HASH.each do |key, value|
@@ -24,37 +16,45 @@ class Scrabble::Scoring
         end
       end
     end
-    #add 50 points bonus for 7 letter words
+
+    #Adds the 50 point bonus for 7 letter words
     if word_array.length == 7
       total_score += 50
     end
+
     return total_score
+
   end
 
+  #Returns the highest score from an array of words
   def self.highest_score_from(array_of_words)
     array_of_scores = []
+
     array_of_words = array_of_words.map(&:downcase)
 
+    #Breaks the array down to each word, scores the word, & stores the score in the scores array
     array_of_words.each do |word|
       score_per_word = Scrabble::Scoring.score(word)
-      # create @wordscore_array and push into array_of_words
       array_of_scores.push(score_per_word)
     end
 
-    # finding the max score in array_of_scores;
-    # finding the max score index;
-    # finding the corresponding word at the same index in the array_of_words:
+    #Finds the max score in array_of_scores
     max_score = array_of_scores.max
+
+    #Finds the max score index
     index_of_max_score = array_of_scores.index(max_score)
+
+    #Finds the corresponding word at the same index in the array_of_words
     winning_word = array_of_words[index_of_max_score]
-    # # check the # of times max value appears in array_of_scores (for potential draw):
+
+    #Checks for how many times the max value appears in the scores array (to look for ties)
     num_of_winning_words = array_of_scores.count(max_score)
 
     tie_array = []
-    # single winning_word:
+
+    #If there's a single winning word, it returns that word. If there's more than one then check for a 7-letter word or the shortest word
     if num_of_winning_words == 1
       winning_word
-      # draw:
     else
       (array_of_scores.length).times do |i|
         if array_of_scores[i] == max_score
@@ -66,9 +66,9 @@ class Scrabble::Scoring
       else
         return tie_array.min_by(&:length)
       end
-    end # of it
-  end # of def
-end # of class
+    end
+  end
+end
 
 # print Scrabble::Scoring.highest_score_from(["test", "z", "q"])
 # puts
