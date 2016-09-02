@@ -13,6 +13,8 @@ class Scrabble::Player
     @name = name
     # later maybe add error handeling for "" or Fixnum arguments
     @plays_array = []
+    @players_tilebag = Scrabble::TileBag.new #creating a TileBag instance for the created player
+    @tiles_array = []
   end
 
   # #play(word): Adds the input word to the plays Array
@@ -61,9 +63,15 @@ class Scrabble::Player
 
   def tiles
     random_number = rand(1..7)
-    Scrabble::TileBag.draw_tiles(random_number)
+    drawn_tiles = @players_tilebag.draw_tiles(random_number) #draw_tiles isn't a class method so we don't call it on Scrabble::TileBag...I'm guessing we call it on an instance of it? Created one in the initialize (above)
+    @tiles_array.push(drawn_tiles)
   end
 
+  def draw_tiles(tile_bag)
+    until @tiles_array.length == 7
+      tiles
+    end
+  end
 
 end
 
