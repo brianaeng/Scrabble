@@ -18,10 +18,10 @@ class Scrabble::Player
     if won?
       return false
     else
-      @plays_array.push(word)
-      score = Scrabble::Scoring.score(word)
-      @scores.push(score)
-      return score
+        @plays_array.push(word)
+        score = Scrabble::Scoring.score(word)
+        @scores.push(score)
+        return score
     end
   end
 
@@ -80,13 +80,13 @@ end
 # puts
 # print player0.tiles
 
-# player0 = Scrabble::Player.new("nemo")
-# player0.play("eat") #Score of this is 3
-# puts
-# player0.play("quick") #Score of this is 20
-# puts
-# player0.play("test") #Score of this is 4
-# puts
+player0 = Scrabble::Player.new("nemo")
+print player0.play("eat") #Score of this is 3
+puts
+print player0.play("xet") #Score of this is 20
+puts
+print player0.play("test") #Score of this is 4
+puts
 # puts player0.total_score
 # puts player0.highest_scoring_word
 # puts player0.highest_word_score
