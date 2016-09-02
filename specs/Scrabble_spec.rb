@@ -115,6 +115,21 @@ describe 'testing Player class' do
     player1.play("youbett")
     expect(player1.play("youbett")).must_equal(false)
   end
+
+  it 'must return the player tiles array when draw tiles is called' do
+    player0 = Scrabble::Player.new("nemo")
+    players_tilebag = Scrabble::TileBag.new
+    player0.draw_tiles(players_tilebag)
+    expect((player0.tiles).length).must_equal(7)
+  end
+
+  it 'must gibrish return the player tiles array when draw tiles is called' do
+    player0 = Scrabble::Player.new("nemo")
+    players_tilebag = Scrabble::TileBag.new
+    player0.draw_tiles(players_tilebag)
+    expect(player0.tiles).must_equal(player0.tiles_array)
+  end
+
 end
 
 # wave 3
@@ -148,16 +163,8 @@ describe 'testing TileBag class' do
     expect(draw1.class).must_equal(Scrabble::TileBag)
   end
 
-  # it 'must return' do
-  #   draw1 = Scrabble::TileBag.new
-  #   player1 = Scrabble::Player.new
-  #   expect(player1.tiles.class).must_equal(Array)
-  # end
-  # #
-  # def tiles
-  #   random_number = rand(1..7)
-  #   Scrabble::TileBag.draw_tiles(random_number)
-  # end
-  #
+
+
+
 
 end
