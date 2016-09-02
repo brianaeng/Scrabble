@@ -4,8 +4,10 @@
 
 
 require_relative 'Spec_helper'
-require_relative '../lib/Scoring'
-require_relative '../lib/Player'
+# require_relative '../lib/Scoring'
+# require_relative '../lib/Player'
+require_relative '../lib/test'
+require_relative '../lib/test2'
 require_relative '../lib/TileBag'
 
 # require_relative '../testing'
@@ -14,43 +16,43 @@ require_relative '../lib/TileBag'
 describe 'testing Scoring class' do
   it 'must return correct score (Fixnum) for a given word (checking also for adding bonus)' do
     expect(Scrabble::Scoring.score("dog")).must_equal(5)
-    Scrabble::Scoring.reset
+    # Scrabble::Scoring.reset
   end
 
   it 'must return correct score (Fixnum) for a given word (checking also for adding bonus)' do
     expect(Scrabble::Scoring.score("highest")).must_equal(64)
-    Scrabble::Scoring.reset
+    # Scrabble::Scoring.reset
   end
 
   it 'must return correct score (Fixnum) for a given word (checking also for adding bonus)' do
     expect(Scrabble::Scoring.score("testing")).must_equal(58)
-    Scrabble::Scoring.reset
+    # Scrabble::Scoring.reset
   end
 
   it 'must return shortest word from the @@tie_array' do
     expect(Scrabble::Scoring.highest_score_from(["don","f", "ae"])).must_equal("f")
-    Scrabble::Scoring.reset
+    # Scrabble::Scoring.reset
   end
 
   it 'must return highest scoring word' do
     expect(Scrabble::Scoring.highest_score_from(["muzzle","quick", "ember"])).must_equal("muzzle")
-    Scrabble::Scoring.reset
+    # Scrabble::Scoring.reset
   end
 
   it 'must return first word from the @@tie_array when both are the same length' do
     expect(Scrabble::Scoring.highest_score_from(["y","w", "d"])).must_equal("y")
-    Scrabble::Scoring.reset
+    # Scrabble::Scoring.reset
   end
 
   it 'must return first word from the @@tie_array when both are the same length' do
     expect(Scrabble::Scoring.highest_score_from(["so","rate", "late"])).must_equal("rate")
-    Scrabble::Scoring.reset
+    # Scrabble::Scoring.reset
   end
 
 
   it 'must return 7 lettered word from the @@tie_array' do
     expect(Scrabble::Scoring.highest_score_from(["last","qqqqqx", "aloudie"])).must_equal("aloudie")
-    Scrabble::Scoring.reset
+    # Scrabble::Scoring.reset
   end
 
 end
@@ -116,14 +118,14 @@ describe 'testing Player class' do
     expect(player1.play("youbett")).must_equal(false)
   end
 
-  it 'must return the player tiles array when draw tiles is called' do
+  it 'must return the right number of tiles when draw tiles is called' do
     player0 = Scrabble::Player.new("nemo")
     players_tilebag = Scrabble::TileBag.new
     player0.draw_tiles(players_tilebag)
     expect((player0.tiles).length).must_equal(7)
   end
 
-  it 'must gibrish return the player tiles array when draw tiles is called' do
+  it 'must return the player tiles array when draw tiles is called' do
     player0 = Scrabble::Player.new("nemo")
     players_tilebag = Scrabble::TileBag.new
     player0.draw_tiles(players_tilebag)
@@ -132,7 +134,7 @@ describe 'testing Player class' do
 
 end
 
-# wave 3
+# Wave 3
 
 describe 'testing TileBag class' do
   it 'must return correct number of randomized tiles for a given number of tiles' do
@@ -162,9 +164,5 @@ describe 'testing TileBag class' do
     draw1 = Scrabble::TileBag.new
     expect(draw1.class).must_equal(Scrabble::TileBag)
   end
-
-
-
-
 
 end
